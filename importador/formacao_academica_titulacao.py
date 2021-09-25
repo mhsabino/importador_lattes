@@ -9,8 +9,6 @@ cursor = conexao.conn.cursor()
 
 curriculos = [f for f in listdir(xml.CURRICULOS_PATH) if isfile(join(xml.CURRICULOS_PATH, f))]
 
-curriculos = [curriculos[0]]
-
 for curriculo in curriculos:
   xml_tree = xml.ET.parse(xml.CURRICULOS_PATH + curriculo)
 
