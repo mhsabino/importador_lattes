@@ -127,9 +127,9 @@ for curriculo in curriculos:
             setor_de_atividade_3 = ''
 
             if setores_de_atividade != None:
-              setor_de_atividade_1 = texto.normaliza(palavras_chave.get('SETOR-DE-ATIVIDADE-1') or '')
-              setor_de_atividade_2 = texto.normaliza(palavras_chave.get('SETOR-DE-ATIVIDADE-2') or '')
-              setor_de_atividade_3 = texto.normaliza(palavras_chave.get('SETOR-DE-ATIVIDADE-3') or '')
+              setor_de_atividade_1 = texto.normaliza(setores_de_atividade.get('SETOR-DE-ATIVIDADE-1') or '')
+              setor_de_atividade_2 = texto.normaliza(setores_de_atividade.get('SETOR-DE-ATIVIDADE-2') or '')
+              setor_de_atividade_3 = texto.normaliza(setores_de_atividade.get('SETOR-DE-ATIVIDADE-3') or '')
 
             try:
               cursor.execute('INSERT INTO tab_6_atividade_pesquisa_desenvolvimento (docente, nome_instituicao, ano_inicio, ano_fim, nome_orgao, nome_unidade, titulo_linha_pesquisa, flag_linha_pesquisa_ativa, objetivos_linha_pesquisa, palavra_chave1, palavra_chave2, palavra_chave3, palavra_chave4, palavra_chave5, palavra_chave6, nome_grande_area_conhecimento1, nome_grande_area_conhecimento2, nome_grande_area_conhecimento3, nome_area_conhecimento1, nome_area_conhecimento2, nome_area_conhecimento3, nome_sub_area_conhecimento1, nome_sub_area_conhecimento2, nome_sub_area_conhecimento3, nome_da_especialidade1, nome_da_especialidade2, nome_da_especialidade3, setor_atividade1, setor_atividade2, setor_atividade3, id_1dados_gerais) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)', (nome_do_docente, nome_instituicao, ano_inicio, ano_fim, nome_orgao, nome_unidade, titulo_da_linha_de_pesquisa, flag_linha_de_pesquisa_ativa, objetivos_linha_de_pesquisa, palavra_chave_1, palavra_chave_2, palavra_chave_3, palavra_chave_4, palavra_chave_5, palavra_chave_6, nome_grande_area_do_conhecimento_1, nome_grande_area_do_conhecimento_2, nome_grande_area_do_conhecimento_3, nome_da_area_do_conhecimento_1, nome_da_area_do_conhecimento_2, nome_da_area_do_conhecimento_3, nome_da_sub_area_do_conhecimento_1, nome_da_sub_area_do_conhecimento_2, nome_da_sub_area_do_conhecimento_3, nome_da_especialidade_1, nome_da_especialidade_2, nome_da_especialidade_3, setor_de_atividade_1, setor_de_atividade_2, setor_de_atividade_3, identificacao))
