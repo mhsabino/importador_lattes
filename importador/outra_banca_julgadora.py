@@ -34,20 +34,20 @@ for curriculo in curriculos:
 
     if dados_complementares != None:
 
-      participacao_em_banca_trabalhos_conclusao = dados_complementares.find('PARTICIPACAO-EM-BANCA-TRABALHOS-CONCLUSAO')
+      participacao_em_banca_julgadora = dados_complementares.find('PARTICIPACAO-EM-BANCA-JULGADORA')
       
-      if participacao_em_banca_trabalhos_conclusao != None:
+      if participacao_em_banca_julgadora != None:
 
-        participacao_em_banca_de_doutorados = participacao_em_banca_trabalhos_conclusao.findall('PARTICIPACAO-EM-BANCA-DE-DOUTORADO')
+        outras_bancas_julgadoras = participacao_em_banca_julgadora.findall('OUTRAS-BANCAS-JULGADORAS')
 
-        for participacao_em_banca_de_doutorado in participacao_em_banca_de_doutorados:
+        for outras_bancas_julgadora in outras_bancas_julgadoras:
 
-          dados_basicos         = participacao_em_banca_de_doutorado.find('DADOS-BASICOS-DA-PARTICIPACAO-EM-BANCA-DE-DOUTORADO')
-          detalhamento          = participacao_em_banca_de_doutorado.find('DETALHAMENTO-DA-PARTICIPACAO-EM-BANCA-DE-DOUTORADO')
-          palavras_chave        = participacao_em_banca_de_doutorado.find('PALAVRAS-CHAVE')
-          participantes         = participacao_em_banca_de_doutorado.findall('PARTICIPANTE-BANCA')
-          areas_do_conhecimento = participacao_em_banca_de_doutorado.find('AREAS-DO-CONHECIMENTO')
-          setores_de_atividade  = participacao_em_banca_de_doutorado.find('SETORES-DE-ATIVIDADE')
+          dados_basicos         = outras_bancas_julgadora.find('DADOS-BASICOS-DE-OUTRAS-BANCAS-JULGADORAS')
+          detalhamento          = outras_bancas_julgadora.find('DETALHAMENTO-DE-OUTRAS-BANCAS-JULGADORAS')
+          palavras_chave        = outras_bancas_julgadora.find('PALAVRAS-CHAVE')
+          participantes         = outras_bancas_julgadora.findall('PARTICIPANTE-BANCA')
+          areas_do_conhecimento = outras_bancas_julgadora.find('AREAS-DO-CONHECIMENTO')
+          setores_de_atividade  = outras_bancas_julgadora.find('SETORES-DE-ATIVIDADE')
 
           if dados_basicos != None:
 
@@ -155,9 +155,9 @@ for curriculo in curriculos:
                           VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""", 
                           (nome_do_docente, natureza, tipo, ano, pais, idioma, nome_do_candidato, nome_instituicao, nome_orgao, nome_curso, campo_participantes[0], campo_participantes[1], campo_participantes[2], campo_participantes[3], campo_participantes[4], palavra_chave_1, palavra_chave_2, palavra_chave_3, palavra_chave_3, palavra_chave_5, palavra_chave_6, nome_grande_area_do_conhecimento_1, nome_grande_area_do_conhecimento_2, nome_grande_area_do_conhecimento_3, nome_da_area_do_conhecimento_1, nome_da_area_do_conhecimento_2, nome_da_area_do_conhecimento_3, nome_da_sub_area_do_conhecimento_1, nome_da_sub_area_do_conhecimento_2, nome_da_sub_area_do_conhecimento_3, nome_da_especialidade_1, nome_da_especialidade_2, nome_da_especialidade_3, setor_de_atividade_1, setor_de_atividade_2, setor_de_atividade_3))
             conexao.conn.commit()
-            print('Participacao doutorado inserida com sucesso!')
+            print('Outra banca julgadora inserida com sucesso!')
           except Exception as e:
-            print('ERRO: Ao salvar o Participacao doutorado')
+            print('ERRO: Ao salvar o Outra banca julgadora')
             print(e)
 
   except TypeError as e:

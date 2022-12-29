@@ -78,13 +78,13 @@ for curriculo in curriculos:
 
           # Obs.: Há docentes com um número elevado de ordens, porém o banco foi feito para suportar apenas três
           campo_participantes = [''] * 50
-          campo_participantes = [''] * 50
+          campo_ordens        = [''] * 50
 
           for index, nome_participante in enumerate(nomes_participantes):
             campo_participantes[index] = nome_participante
 
           for index, ordem in enumerate(ordem_participantes):
-            campo_participantes[index] = ordem
+            campo_ordens[index] = ordem
 
           palavra_chave_1 = ''
           palavra_chave_2 = ''
