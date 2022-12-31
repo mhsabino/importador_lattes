@@ -77,8 +77,8 @@ for curriculo in curriculos:
             ordem_participantes.append(ordem_do_participante)
 
           # Obs.: Há docentes com um número elevado de ordens, porém o banco foi feito para suportar apenas três
-          campo_participantes = [''] * 50
-          campo_ordens        = [''] * 50
+          campo_participantes = [''] * 130
+          campo_ordens        = [''] * 130
 
           for index, nome_participante in enumerate(nomes_participantes):
             campo_participantes[index] = nome_participante

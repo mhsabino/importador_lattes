@@ -68,11 +68,11 @@ for curriculo in curriculos:
               equipe_do_projeto        = projeto_de_pesquisa.find('EQUIPE-DO-PROJETO')
               financiadores_do_projeto = projeto_de_pesquisa.find('FINANCIADORES-DO-PROJETO')
 
-              campo_nomes         = [''] * 50
-              campo_ordens        = [''] * 50
-              campo_flags         = [''] * 50
-              campo_instituicoes  = [''] * 50
-              campo_naturezas     = [''] * 50
+              campo_nomes         = [''] * 130
+              campo_ordens        = [''] * 130
+              campo_flags         = [''] * 130
+              campo_instituicoes  = [''] * 130
+              campo_naturezas     = [''] * 130
 
               if equipe_do_projeto != None:
 

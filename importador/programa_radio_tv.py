@@ -75,8 +75,8 @@ for curriculo in curriculos:
             autorias.append(ordem_de_autoria)
 
           # Obs.: Há docentes com um número elevado de autorias, porém o banco foi feito para suportar apenas três
-          campo_autores  = [''] * 50
-          campo_autorias = [''] * 50
+          campo_autores  = [''] * 80
+          campo_autorias = [''] * 80
 
           for index, nome_autor in enumerate(nomes_autores):
             campo_autores[index] = nome_autor
