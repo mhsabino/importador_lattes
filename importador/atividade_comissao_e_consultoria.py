@@ -53,7 +53,7 @@ for curriculo in curriculos:
             especificacao = texto.normaliza(atividade.get('ESPECIFICACAO') or '')
 
             try:
-              cursor.execute('INSERT INTO tab_10_atividade_conselho_comisao_Consultoria (docente, ano_inicio, ano_fim, nome_orgao, nome_unidade, especificacao) VALUES (%s, %s, %s, %s, %s, %s)', (nome_do_docente, ano_inicio, ano_fim, nome_orgao, nome_unidade, especificacao))
+              cursor.execute('INSERT INTO tab_10_atividade_conselho_comisao_Consultoria (docente, ano_inicio, ano_fim, nome_orgao, nome_unidade, especificacao, id_1dados_gerais) VALUES (%s, %s, %s, %s, %s, %s, %s)', (nome_do_docente, ano_inicio, ano_fim, nome_orgao, nome_unidade, especificacao, identificacao))
               conexao.conn.commit()
               print('Comissao inserida com sucesso!')
             except Exception as e:

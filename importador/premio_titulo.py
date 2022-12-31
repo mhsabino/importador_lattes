@@ -43,7 +43,7 @@ for curriculo in curriculos:
         ano_da_premiacao           = texto.normaliza(premio.get('ANO-DA-PREMIACAO') or '')
 
         try:
-          cursor.execute('INSERT INTO tab_14_premio_titulos (docente, nome_do_titulo_ou_premio1, nome_da_entidade_promotora1, ano_da_premiacao1) VALUES (%s, %s, %s, %s)', (nome_do_docente, nome_do_premio_ou_titulo, nome_da_entidade_promotora, ano_da_premiacao))
+          cursor.execute('INSERT INTO tab_14_premio_titulos (docente, nome_do_titulo_ou_premio1, nome_da_entidade_promotora1, ano_da_premiacao1, id_1dados_gerais) VALUES (%s, %s, %s, %s, %s)', (nome_do_docente, nome_do_premio_ou_titulo, nome_da_entidade_promotora, ano_da_premiacao, identificacao))
           conexao.conn.commit()
           print('Premio inserido com sucesso!')
         except Exception as e:

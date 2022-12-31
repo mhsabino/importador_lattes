@@ -41,7 +41,7 @@ for curriculo in curriculos:
         descricao = texto.normaliza(idioma.get('DESCRICAO-DO-IDIOMA') or '')
 
         try:
-          cursor.execute('INSERT INTO tab_13_idioma (docente, descricao_do_idioma1) VALUES (%s, %s)', (nome_do_docente, descricao))
+          cursor.execute('INSERT INTO tab_13_idioma (docente, descricao_do_idioma1, id_1dados_gerais) VALUES (%s, %s, %s)', (nome_do_docente, descricao, identificacao))
           conexao.conn.commit()
           print('Idioma inserido com sucesso!')
         except Exception as e:

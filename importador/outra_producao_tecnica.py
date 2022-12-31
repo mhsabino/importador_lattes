@@ -61,6 +61,7 @@ for curriculo in curriculos:
           if detalhamento != None:
 
             instituicao_promotora = texto.normaliza(detalhamento.get('INSTITUICAO-PROMOTORA') or '')
+            finalidade            = texto.normaliza(detalhamento.get('FINALIDADE') or '')
             local                 = texto.normaliza(detalhamento.get('LOCAL') or '')
             cidade                = texto.normaliza(detalhamento.get('CIDADE') or '')
 
@@ -76,8 +77,10 @@ for curriculo in curriculos:
             autorias.append(ordem_de_autoria)
 
           # Obs.: Há docentes com um número elevado de autorias, porém o banco foi feito para suportar apenas três
-          campo_autores  = [''] * 50
-          campo_autorias = [''] * 50
+          campo_autores  = [''] * 130
+          campo_autorias = [''] * 130
+
+          print(len(nomes_autores))
 
           for index, nome_autor in enumerate(nomes_autores):
             campo_autores[index] = nome_autor
@@ -149,10 +152,10 @@ for curriculo in curriculos:
             setor_de_atividade_3 = texto.normaliza(setores_de_atividade.get('SETOR-DE-ATIVIDADE-3') or '')
 
           try:
-            cursor.execute("""INSERT INTO ???????????? 
-                          () 
-                          VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""", 
-                          (nome_do_docente))
+            cursor.execute("""INSERT INTO tab_30_outra_producao_tecnica 
+                          (docente, natureza, titulo, ano, pais, idioma, instituicao_promotora, local, finalidade, cidade, meio_de_divulgacao, nome_completo_autor1, nome_completo_autor2, nome_completo_autor3, nome_completo_autor4, nome_completo_autor5, nome_completo_autor6, nome_completo_autor7, nome_completo_autor8, nome_completo_autor9, nome_completo_autor10, ordem_da_autoria1, ordem_da_autoria2, ordem_da_autoria3, ordem_da_autoria4, ordem_da_autoria5, ordem_da_autoria6, ordem_da_autoria7, ordem_da_autoria8, ordem_da_autoria9, ordem_da_autoria10, palavra_chave1, palavra_chave2, palavra_chave3, palavra_chave4, palavra_chave5, palavra_chave6, nome_grande_area_do_conhecimento1, nome_grande_area_do_conhecimento2, nome_grande_area_do_conhecimento3, nome_da_area_conhecimento1, nome_da_area_conhecimento2, nome_da_area_conhecimento3, nome_sub_area_conhecimento1, nome_sub_area_conhecimento2, nome_sub_area_conhecimento3, nome_da_especialidade1, nome_da_especialidade2, nome_da_especialidade3, setor_da_atividade1, setor_da_atividade2, setor_da_atividade3, id_1dados_gerais) 
+                          VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""", 
+                          (nome_do_docente, natureza, titulo, ano, pais, idioma, instituicao_promotora, local, finalidade, cidade, meio_de_divulgacao, campo_autores[0], campo_autores[1], campo_autores[2], campo_autores[3], campo_autores[4], campo_autores[5], campo_autores[6], campo_autores[7], campo_autores[8], campo_autores[9], campo_autorias[0], campo_autorias[1], campo_autorias[2], campo_autorias[3], campo_autorias[4], campo_autorias[5], campo_autorias[6], campo_autorias[7], campo_autorias[8], campo_autorias[9], palavra_chave_1, palavra_chave_2, palavra_chave_3, palavra_chave_4, palavra_chave_5, palavra_chave_6, nome_grande_area_do_conhecimento_1, nome_grande_area_do_conhecimento_2, nome_grande_area_do_conhecimento_3, nome_da_area_do_conhecimento_1, nome_da_area_do_conhecimento_2, nome_da_area_do_conhecimento_3, nome_da_sub_area_do_conhecimento_1, nome_da_sub_area_do_conhecimento_2, nome_da_sub_area_do_conhecimento_3, nome_da_especialidade_1, nome_da_especialidade_2, nome_da_especialidade_3, setor_de_atividade_1, setor_de_atividade_2, setor_de_atividade_3, identificacao))
             conexao.conn.commit()
             print('Outra producao tecnica inserida com sucesso!')
           except Exception as e:

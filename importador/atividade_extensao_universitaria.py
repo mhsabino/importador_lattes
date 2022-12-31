@@ -53,7 +53,7 @@ for curriculo in curriculos:
             atividade_de_extensao_realizada = texto.normaliza(extensao.get('ATIVIDADE-DE-EXTENSAO-REALIZADA') or '')
 
             try:
-              cursor.execute('INSERT INTO tab_9_atividade_extensao_universitaria (docente, ano_inicio, ano_fim, nome_orgao, nome_unidade, atividade_extensao_realizada) VALUES (%s, %s, %s, %s, %s, %s)', (nome_do_docente, ano_inicio, ano_fim, nome_orgao, nome_unidade, atividade_de_extensao_realizada))
+              cursor.execute('INSERT INTO tab_9_atividade_extensao_universitaria (docente, ano_inicio, ano_fim, nome_orgao, nome_unidade, atividade_extensao_realizada, id_1dados_gerais) VALUES (%s, %s, %s, %s, %s, %s, %s)', (nome_do_docente, ano_inicio, ano_fim, nome_orgao, nome_unidade, atividade_de_extensao_realizada, identificacao))
               conexao.conn.commit()
               print('Extensao inserida com sucesso!')
             except Exception as e:

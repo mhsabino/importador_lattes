@@ -54,7 +54,7 @@ for curriculo in curriculos:
             atividade_realizada = texto.normaliza(outra_atividade.get('ATIVIDADE-REALIZADA') or '')
 
             try:
-              cursor.execute('INSERT INTO tab_11_outra_atividade_tecnico_cientifica (docente, ano_inicio, ano_fim, nome_orgao, nome_unidade, flag_periodo, atividade_realizada) VALUES (%s, %s, %s, %s, %s, %s, %s)', (nome_do_docente, ano_inicio, ano_fim, nome_orgao, nome_unidade, flag_periodo, atividade_realizada))
+              cursor.execute('INSERT INTO tab_11_outra_atividade_tecnico_cientifica (docente, ano_inicio, ano_fim, nome_orgao, nome_unidade, flag_periodo, atividade_realizada, id_1dados_gerais) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)', (nome_do_docente, ano_inicio, ano_fim, nome_orgao, nome_unidade, flag_periodo, atividade_realizada, identificacao))
               conexao.conn.commit()
               print('Outra atividade inserida com sucesso!')
             except Exception as e:
