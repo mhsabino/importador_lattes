@@ -67,6 +67,13 @@ for curriculo in curriculos:
   
         palavras_chave = mestrado.find('PALAVRAS-CHAVE')
 
+        palavra_chave_1 = ''
+        palavra_chave_2 = ''
+        palavra_chave_3 = ''
+        palavra_chave_4 = ''
+        palavra_chave_5 = ''
+        palavra_chave_6 = ''
+
         if palavras_chave != None:
           palavra_chave_1 = texto.normaliza(palavras_chave.get('PALAVRA-CHAVE-1') or '')
           palavra_chave_2 = texto.normaliza(palavras_chave.get('PALAVRA-CHAVE-2') or '')
@@ -76,6 +83,19 @@ for curriculo in curriculos:
           palavra_chave_6 = texto.normaliza(palavras_chave.get('PALAVRA-CHAVE-6') or '')
 
         areas_do_conhecimento = mestrado.find('AREAS-DO-CONHECIMENTO')
+
+        nome_grande_area_do_conhecimento_1 = ''
+        nome_da_area_do_conhecimento_1     = ''
+        nome_da_sub_area_do_conhecimento_1 = ''
+        nome_da_especialidade_1            = ''
+        nome_grande_area_do_conhecimento_2 = ''
+        nome_da_area_do_conhecimento_2     = ''
+        nome_da_sub_area_do_conhecimento_2 = ''
+        nome_da_especialidade_2            = ''
+        nome_grande_area_do_conhecimento_3 = ''
+        nome_da_area_do_conhecimento_3     = ''
+        nome_da_sub_area_do_conhecimento_3 = ''
+        nome_da_especialidade_3            = ''
 
         if areas_do_conhecimento != None:
           areas_do_conhecimento_1 = areas_do_conhecimento.find('AREA-DO-CONHECIMENTO-1')
@@ -103,6 +123,10 @@ for curriculo in curriculos:
             nome_da_especialidade_3            = texto.normaliza(areas_do_conhecimento_3.get('NOME-DA-ESPECIALIDADE') or '')
 
         setores_de_atividade = mestrado.find('SETORES-DE-ATIVIDADE')
+
+        setor_de_atividade_1 = ''
+        setor_de_atividade_2 = ''
+        setor_de_atividade_3 = ''
 
         if setores_de_atividade != None:
           setor_de_atividade_1 = texto.normaliza(setores_de_atividade.get('SETOR-DE-ATIVIDADE-1') or '')

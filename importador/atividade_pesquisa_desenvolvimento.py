@@ -50,7 +50,6 @@ for curriculo in curriculos:
             ano_fim          = texto.normaliza(pesquisa_e_desenvolvimento.get('ANO-FIM') or '')
             nome_orgao       = texto.normaliza(pesquisa_e_desenvolvimento.get('NOME-ORGAO') or '')
             nome_unidade     = texto.normaliza(pesquisa_e_desenvolvimento.get('NOME-UNIDADE') or '')
-            nome_instituicao = texto.normaliza(atuacao_profissional.get('NOME-INSTITUICAO') or '')
 
             linha_de_pesquisa = pesquisa_e_desenvolvimento.find('LINHA-DE-PESQUISA')
 
@@ -132,11 +131,11 @@ for curriculo in curriculos:
               setor_de_atividade_3 = texto.normaliza(setores_de_atividade.get('SETOR-DE-ATIVIDADE-3') or '')
 
             try:
-              cursor.execute('INSERT INTO tab_6_atividade_pesquisa_desenvolvimento (docente, nome_instituicao, ano_inicio, ano_fim, nome_orgao, nome_unidade, titulo_linha_pesquisa, flag_linha_pesquisa_ativa, objetivos_linha_pesquisa, palavra_chave1, palavra_chave2, palavra_chave3, palavra_chave4, palavra_chave5, palavra_chave6, nome_grande_area_conhecimento1, nome_grande_area_conhecimento2, nome_grande_area_conhecimento3, nome_area_conhecimento1, nome_area_conhecimento2, nome_area_conhecimento3, nome_sub_area_conhecimento1, nome_sub_area_conhecimento2, nome_sub_area_conhecimento3, nome_da_especialidade1, nome_da_especialidade2, nome_da_especialidade3, setor_atividade1, setor_atividade2, setor_atividade3, id_1dados_gerais) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)', (nome_do_docente, nome_instituicao, ano_inicio, ano_fim, nome_orgao, nome_unidade, titulo_da_linha_de_pesquisa, flag_linha_de_pesquisa_ativa, objetivos_linha_de_pesquisa, palavra_chave_1, palavra_chave_2, palavra_chave_3, palavra_chave_4, palavra_chave_5, palavra_chave_6, nome_grande_area_do_conhecimento_1, nome_grande_area_do_conhecimento_2, nome_grande_area_do_conhecimento_3, nome_da_area_do_conhecimento_1, nome_da_area_do_conhecimento_2, nome_da_area_do_conhecimento_3, nome_da_sub_area_do_conhecimento_1, nome_da_sub_area_do_conhecimento_2, nome_da_sub_area_do_conhecimento_3, nome_da_especialidade_1, nome_da_especialidade_2, nome_da_especialidade_3, setor_de_atividade_1, setor_de_atividade_2, setor_de_atividade_3, identificacao))
+              cursor.execute('INSERT INTO tab_6_atividade_pesquisa_desenvolvimento (docente, ano_inicio, ano_fim, nome_orgao, nome_unidade, titulo_linha_pesquisa, flag_linha_pesquisa_ativa, objetivos_linha_pesquisa, palavra_chave1, palavra_chave2, palavra_chave3, palavra_chave4, palavra_chave5, palavra_chave6, nome_grande_area_conhecimento1, nome_grande_area_conhecimento2, nome_grande_area_conhecimento3, nome_area_conhecimento1, nome_area_conhecimento2, nome_area_conhecimento3, nome_sub_area_conhecimento1, nome_sub_area_conhecimento2, nome_sub_area_conhecimento3, nome_da_especialidade1, nome_da_especialidade2, nome_da_especialidade3, setor_atividade1, setor_atividade2, setor_atividade3, id_1dados_gerais) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)', (nome_do_docente, ano_inicio, ano_fim, nome_orgao, nome_unidade, titulo_da_linha_de_pesquisa, flag_linha_de_pesquisa_ativa, objetivos_linha_de_pesquisa, palavra_chave_1, palavra_chave_2, palavra_chave_3, palavra_chave_4, palavra_chave_5, palavra_chave_6, nome_grande_area_do_conhecimento_1, nome_grande_area_do_conhecimento_2, nome_grande_area_do_conhecimento_3, nome_da_area_do_conhecimento_1, nome_da_area_do_conhecimento_2, nome_da_area_do_conhecimento_3, nome_da_sub_area_do_conhecimento_1, nome_da_sub_area_do_conhecimento_2, nome_da_sub_area_do_conhecimento_3, nome_da_especialidade_1, nome_da_especialidade_2, nome_da_especialidade_3, setor_de_atividade_1, setor_de_atividade_2, setor_de_atividade_3, identificacao))
               conexao.conn.commit()
-              print('Atividade Pesquisa Desenvolvimento {0} inserida com sucesso!'.format(nome_instituicao))
+              print('Atividade Pesquisa Desenvolvimento inserida com sucesso!')
             except Exception as e:
-              print('ERRO: Ao salvar a Atividade Pesquisa Desenvolvimento {0}: '.format(nome_instituicao))
+              print('ERRO: Ao salvar a Atividade Pesquisa Desenvolvimento: ')
               print(e)
 
   except TypeError as e:

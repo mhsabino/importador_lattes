@@ -94,6 +94,13 @@ for curriculo in curriculos:
           for index, autoria in enumerate(autorias):
             campo_autorias[index] = autoria
 
+          palavra_chave_1 = ''
+          palavra_chave_2 = ''
+          palavra_chave_3 = ''
+          palavra_chave_4 = ''
+          palavra_chave_5 = ''
+          palavra_chave_6 = ''
+
           if palavras_chave != None:
           
             palavra_chave_1 = texto.normaliza(palavras_chave.get('PALAVRA-CHAVE-1') or '')

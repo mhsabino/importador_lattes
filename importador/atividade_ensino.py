@@ -50,20 +50,29 @@ for curriculo in curriculos:
             ano_fim          = texto.normaliza(ensino.get('ANO-FIM') or '')
             flag_periodo     = texto.normaliza(ensino.get('FLAG-PERIODO') or '')
             tipo_ensino      = texto.normaliza(ensino.get('TIPO-ENSINO') or '')
-            nome_instituicao = texto.normaliza(atuacao_profissional.get('NOME-INSTITUICAO') or '')
 
             disciplinas = ensino.findall('DISCIPLINA')
 
-            for disciplina in disciplinas:
-              sequencia = disciplina.text
+            sequencias = []
 
-              try:
-                cursor.execute('INSERT INTO tab_7_ensino (docente, nome_instituicao, ano_inicio, ano_fim, flag_periodo, tipo_ensino, disciplina_sequencia_especificacao1, id_1dados_gerais) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)', (nome_do_docente, nome_instituicao, ano_inicio, ano_fim, flag_periodo, tipo_ensino, sequencia, identificacao))
-                conexao.conn.commit()
-                print('Ensino {0} inserido com sucesso!'.format(sequencia))
-              except Exception as e:
-                print('ERRO: Ao salvar o Ensino {0}: '.format(sequencia))
-                print(e)
+            for disciplina in disciplinas:
+              sequencias.append(disciplina.text)
+
+            campo_sequencias = [''] * 130
+
+            for index, sequencia in enumerate(sequencias):
+              campo_sequencias[index] = sequencia
+
+            try:
+              cursor.execute("""INSERT INTO tab_7_ensino 
+                            (docente, flag_periodo, tipo_ensino, ano_inicio, ano_fim, disciplina_sequencia_especificacao1, disciplina_sequencia_especificacao2, disciplina_sequencia_especificacao3, disciplina_sequencia_especificacao4, disciplina_sequencia_especificacao5, disciplina_sequencia_especificacao6, disciplina_sequencia_especificacao7, disciplina_sequencia_especificacao8, disciplina_sequencia_especificacao9, disciplina_sequencia_especificacao10, disciplina_sequencia_especificacao11, disciplina_sequencia_especificacao12, id_1dados_gerais) 
+                            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""", 
+                            (nome_do_docente, flag_periodo, tipo_ensino, ano_inicio, ano_fim, campo_sequencias[0], campo_sequencias[1], campo_sequencias[2], campo_sequencias[3], campo_sequencias[4], campo_sequencias[5], campo_sequencias[6], campo_sequencias[7], campo_sequencias[8], campo_sequencias[9], campo_sequencias[10], campo_sequencias[11], identificacao))
+              conexao.conn.commit()
+              print('Ensino {0} inserido com sucesso!'.format(sequencia))
+            except Exception as e:
+              print('ERRO: Ao salvar o Ensino {0}: '.format(sequencia))
+              print(e)
 
   except TypeError as e:
     print(identificacao)

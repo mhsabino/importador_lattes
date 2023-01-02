@@ -51,14 +51,13 @@ for curriculo in curriculos:
             nome_orgao        = texto.normaliza(servico_tecnico_especializado.get('NOME-ORGAO') or '')
             nome_unidade      = texto.normaliza(servico_tecnico_especializado.get('NOME-UNIDADE') or '')
             servico_realizado = texto.normaliza(servico_tecnico_especializado.get('SERVICO-REALIZADO') or '')
-            nome_instituicao  = texto.normaliza(atuacao_profissional.get('NOME-INSTITUICAO') or '')
 
             try:
-              cursor.execute('INSERT INTO tab_8_serviço_tecnico_especializado (docente, nome_instituicao, ano_inicio, ano_fim, nome_orgao, nome_unidade, servico_realizado, id_1dados_gerais) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)', (nome_do_docente, nome_instituicao, ano_inicio, ano_fim, nome_orgao, nome_unidade, servico_realizado, identificacao))
+              cursor.execute('INSERT INTO tab_8_serviço_tecnico_especializado (docente, ano_inicio, ano_fim, nome_orgao, nome_unidade, servico_realizado, id_1dados_gerais) VALUES (%s, %s, %s, %s, %s, %s, %s)', (nome_do_docente, ano_inicio, ano_fim, nome_orgao, nome_unidade, servico_realizado, identificacao))
               conexao.conn.commit()
-              print('Servico tecnico especializado {0} inserido com sucesso!'.format(nome_instituicao))
+              print('Servico tecnico especializado inserido com sucesso!')
             except Exception as e:
-              print('ERRO: Ao salvar o Servico tecnico especializado {0}: '.format(nome_instituicao))
+              print('ERRO: Ao salvar o Servico tecnico especializado: ')
               print(e)
 
   except TypeError as e:

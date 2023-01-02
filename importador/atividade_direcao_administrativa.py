@@ -52,10 +52,9 @@ for curriculo in curriculos:
             nome_orgao       = texto.normaliza(direcao_e_administracao.get('NOME-ORGAO') or '')
             cargo_ou_funcao  = texto.normaliza(direcao_e_administracao.get('CARGO-OU-FUNCAO') or '')
             nome_unidade     = texto.normaliza(direcao_e_administracao.get('NOME-UNIDADE') or '')
-            nome_instituicao = texto.normaliza(atuacao_profissional.get('NOME-INSTITUICAO') or '')
 
             try:
-              cursor.execute('INSERT INTO tab_5_atividade_direcao_administracao (docente, nome_instituicao, ano_inicio, ano_fim, nome_orgao, cargo_ou_funcao, nome_unidade, id_1dados_gerais) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)', (nome_do_docente, nome_instituicao, ano_inicio, ano_fim, nome_orgao, cargo_ou_funcao, nome_unidade, identificacao))
+              cursor.execute('INSERT INTO tab_5_atividade_direcao_administracao (docente, ano_inicio, ano_fim, nome_orgao, cargo_ou_funcao, nome_unidade, id_1dados_gerais) VALUES (%s, %s, %s, %s, %s, %s, %s)', (nome_do_docente, ano_inicio, ano_fim, nome_orgao, cargo_ou_funcao, nome_unidade, identificacao))
               conexao.conn.commit()
               print('Atividade Direcao {0} inserida com sucesso!'.format(cargo_ou_funcao))
             except Exception as e:
