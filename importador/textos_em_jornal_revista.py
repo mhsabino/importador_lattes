@@ -67,25 +67,17 @@ for curriculo in curriculos:
             local_de_publicacao         = texto.normaliza(detalhamento_do_artigo.get('LOCAL-DE-PUBLICACAO') or '')
 
           nomes_autores = []
-          autorias      = []
 
           for autor in autores:
             
             nome_completo_do_autor = texto.normaliza(autor.get('NOME-COMPLETO-DO-AUTOR') or '')
-            ordem_de_autoria       = texto.normaliza(autor.get('ORDEM-DE-AUTORIA') or '')
 
             nomes_autores.append(nome_completo_do_autor)
-            autorias.append(ordem_de_autoria)
 
-          # Obs.: Há docentes com um número elevado de autorias, porém o banco foi feito para suportar apenas três
-          campo_autores  = [''] * 50
-          campo_autorias = [''] * 50
+          campo_autores  = [''] * 3
 
-          for index, nome_autor in enumerate(nomes_autores):
+          for index, nome_autor in enumerate(nomes_autores[:3]):
             campo_autores[index] = nome_autor
-
-          for index, autoria in enumerate(autorias):
-            campo_autorias[index] = autoria
 
           if palavras_chave != None:
           

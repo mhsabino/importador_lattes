@@ -58,9 +58,9 @@ for curriculo in curriculos:
             for disciplina in disciplinas:
               sequencias.append(disciplina.text)
 
-            campo_sequencias = [''] * 130
+            campo_sequencias = [''] * 12
 
-            for index, sequencia in enumerate(sequencias):
+            for index, sequencia in enumerate(sequencias[:12]):
               campo_sequencias[index] = sequencia
 
             try:

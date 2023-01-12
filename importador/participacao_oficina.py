@@ -66,25 +66,19 @@ for curriculo in curriculos:
             nome_curso                   = texto.normaliza(detalhamento.get('NOME-CURSO') or '')
 
           nomes_participantes = []
-          ordem_participantes = []
 
           for participante in participantes:
             
             nome_completo_do_participante = texto.normaliza(participante.get('NOME-COMPLETO-DO-PARTICIPANTE-DA-BANCA') or '')
-            ordem_do_participante         = texto.normaliza(participante.get('ORDEM-PARTICIPANTE') or '')
 
             nomes_participantes.append(nome_completo_do_participante)
-            ordem_participantes.append(ordem_do_participante)
 
           # Obs.: Há docentes com um número elevado de ordens, porém o banco foi feito para suportar apenas três
-          campo_participantes = [''] * 50
-          campo_ordens        = [''] * 50
+          campo_participantes = [''] * 5
 
-          for index, nome_participante in enumerate(nomes_participantes):
+          for index, nome_participante in enumerate(nomes_participantes[:5]):
             campo_participantes[index] = nome_participante
 
-          for index, ordem in enumerate(ordem_participantes):
-            campo_ordens[index] = ordem
 
           palavra_chave_1 = ''
           palavra_chave_2 = ''

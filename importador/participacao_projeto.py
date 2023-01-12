@@ -68,11 +68,11 @@ for curriculo in curriculos:
               equipe_do_projeto        = projeto_de_pesquisa.find('EQUIPE-DO-PROJETO')
               financiadores_do_projeto = projeto_de_pesquisa.find('FINANCIADORES-DO-PROJETO')
 
-              campo_nomes         = [''] * 130
-              campo_ordens        = [''] * 130
-              campo_flags         = [''] * 130
-              campo_instituicoes  = [''] * 130
-              campo_naturezas     = [''] * 130
+              campo_nomes         = [''] * 12
+              campo_ordens        = [''] * 12
+              campo_flags         = [''] * 12
+              campo_instituicoes  = [''] * 12
+              campo_naturezas     = [''] * 12
 
               if equipe_do_projeto != None:
 
@@ -92,13 +92,13 @@ for curriculo in curriculos:
                   ordem_de_integracaoes.append(ordem_de_integracao)
                   flags_responsaveis.append(flag_responsavel)
 
-                for index, nome_completo in enumerate(nomes_completos):
+                for index, nome_completo in enumerate(nomes_completos[:12]):
                   campo_nomes[index] = nome_completo
 
-                for index, ordem in enumerate(ordem_de_integracaoes):
+                for index, ordem in enumerate(ordem_de_integracaoes[:12]):
                   campo_ordens[index] = ordem
 
-                for index, flag in enumerate(flags_responsaveis):
+                for index, flag in enumerate(flags_responsaveis[:12]):
                   campo_flags[index] = flag
 
               if financiadores_do_projeto != None:

@@ -77,15 +77,15 @@ for curriculo in curriculos:
             autorias.append(ordem_de_autoria)
 
           # Obs.: Há docentes com um número elevado de autorias, porém o banco foi feito para suportar apenas três
-          campo_autores  = [''] * 130
-          campo_autorias = [''] * 130
+          campo_autores  = [''] * 10
+          campo_autorias = [''] * 10
 
           print(len(nomes_autores))
 
-          for index, nome_autor in enumerate(nomes_autores):
+          for index, nome_autor in enumerate(nomes_autores[:10]):
             campo_autores[index] = nome_autor
 
-          for index, autoria in enumerate(autorias):
+          for index, autoria in enumerate(autorias[:10]):
             campo_autorias[index] = autoria
 
           palavra_chave_1 = ''

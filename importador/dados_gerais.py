@@ -9,6 +9,19 @@ cursor = conexao.conn.cursor()
 
 curriculos = [f for f in listdir(xml.CURRICULOS_PATH) if isfile(join(xml.CURRICULOS_PATH, f))]
 
+# print(len(curriculos))
+
+# for curriculo in curriculos:
+#   print(xml.CURRICULOS_PATH + curriculo)
+
+#   xml_tree        = xml.ET.parse(xml.CURRICULOS_PATH + curriculo)
+#   root            = xml_tree.getroot()
+#   dados_gerais 	  = root.find('DADOS-GERAIS')
+#   nome_do_docente = texto.normaliza(dados_gerais.get('NOME-COMPLETO'))
+
+#   print(nome_do_docente)
+
+
 for curriculo in curriculos:
   xml_tree = xml.ET.parse(xml.CURRICULOS_PATH + curriculo)
 
