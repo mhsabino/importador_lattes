@@ -38,42 +38,45 @@ for curriculo in curriculos:
       
       if participacao_em_eventos_congressos != None:
 
-        participacao_em_oficinas = participacao_em_eventos_congressos.findall('PARTICIPACAO-EM-OFICINA')
+        participacao_em_eventos = participacao_em_eventos_congressos.findall('PARTICIPACAO-EM-OFICINA')
 
-        for participacao_em_oficina in participacao_em_oficinas:
+        for participacao_em_evento in participacao_em_eventos:
 
-          dados_basicos         = participacao_em_oficina.find('DADOS-BASICOS-DA-PARTICIPACAO-EM-OFICINA')
-          detalhamento          = participacao_em_oficina.find('DETALHAMENTO-DA-PARTICIPACAO-EM-OFICINA')
-          palavras_chave        = participacao_em_oficina.find('PALAVRAS-CHAVE')
-          participantes         = participacao_em_oficina.findall('PARTICIPANTE-BANCA')
-          areas_do_conhecimento = participacao_em_oficina.find('AREAS-DO-CONHECIMENTO')
-          setores_de_atividade  = participacao_em_oficina.find('SETORES-DE-ATIVIDADE')
+          dados_basicos         = participacao_em_evento.find('DADOS-BASICOS-DA-PARTICIPACAO-EM-OFICINA')
+          detalhamento          = participacao_em_evento.find('DETALHAMENTO-DA-PARTICIPACAO-EM-OFICINA')
+          palavras_chave        = participacao_em_evento.find('PALAVRAS-CHAVE')
+          participantes         = participacao_em_evento.findall('PARTICIPANTE-DE-EVENTOS-CONGRESSOS')
+          areas_do_conhecimento = participacao_em_evento.find('AREAS-DO-CONHECIMENTO')
+          setores_de_atividade  = participacao_em_evento.find('SETORES-DE-ATIVIDADE')
 
           if dados_basicos != None:
 
             natureza           = texto.normaliza(dados_basicos.get('NATUREZA') or '')
-            tipo               = texto.normaliza(dados_basicos.get('TIPO') or '')
             titulo             = texto.normaliza(dados_basicos.get('TITULO') or '')
             ano                = texto.normaliza(dados_basicos.get('ANO') or '')
             pais               = texto.normaliza(dados_basicos.get('PAIS') or '')
             idioma             = texto.normaliza(dados_basicos.get('IDIOMA') or '')
 
+            meio_de_divulgacao = texto.normaliza(dados_basicos.get('MEIO-DE-DIVULGACAO') or '')
+            tipo_participacao  = texto.normaliza(dados_basicos.get('TIPO-PARTICIPACAO') or '')
+            forma_participacao = texto.normaliza(dados_basicos.get('FORMA-PARTICIPACAO') or '')
+
           if detalhamento != None:
 
-            nome_do_candidato            = texto.normaliza(detalhamento.get('NOME-DO-CANDIDATO') or '')
-            nome_instituicao             = texto.normaliza(detalhamento.get('NOME-INSTITUICAO') or '')
-            nome_orgao                   = texto.normaliza(detalhamento.get('NOME-ORGAO') or '')
-            nome_curso                   = texto.normaliza(detalhamento.get('NOME-CURSO') or '')
+            nome_instituicao = texto.normaliza(dados_basicos.get('NOME-INSTITUICAO') or '')
+
+            nome_do_evento   = texto.normaliza(dados_basicos.get('NOME-DO-EVENTO') or '')
+            local_do_evento  = texto.normaliza(dados_basicos.get('LOCAL-DO-EVENTO') or '')
+            cidade_do_evento = texto.normaliza(dados_basicos.get('CIDADE-DO-EVENTO') or '')
 
           nomes_participantes = []
 
           for participante in participantes:
             
-            nome_completo_do_participante = texto.normaliza(participante.get('NOME-COMPLETO-DO-PARTICIPANTE-DA-BANCA') or '')
+            nome_completo_do_participante = texto.normaliza(participante.get('NOME-COMPLETO-DO-PARTICIPANTE-DE-EVENTOS-CONGRESSOS') or '')
 
             nomes_participantes.append(nome_completo_do_participante)
 
-          # Obs.: Há docentes com um número elevado de ordens, porém o banco foi feito para suportar apenas três
           campo_participantes = [''] * 5
 
           for index, nome_participante in enumerate(nomes_participantes[:5]):
@@ -144,14 +147,14 @@ for curriculo in curriculos:
             setor_de_atividade_3 = texto.normaliza(setores_de_atividade.get('SETOR-DE-ATIVIDADE-3') or '')
 
           try:
-            cursor.execute("""INSERT INTO tab_29_participaoes_em_bancas 
-                          (docente, natureza, tipo, ano, pais, idioma, nome_do_candidato, nome_instituicao, nome_orgao, nome_curso, nome_completo_do_participante_da_banca1, nome_completo_do_participante_da_banca2, nome_completo_do_participante_da_banca3, nome_completo_do_participante_da_banca4, nome_completo_do_participante_da_banca5, palavra_chave1, palavra_chave2, palavra_chave3, palavra_chave4, palavra_chave5, palavra_chave6, nome_grande_area_do_conhecimento1, nome_grande_area_do_conhecimento2, nome_grande_area_do_conhecimento3, nome_da_area_conhecimento1, nome_da_area_conhecimento2, nome_da_area_conhecimento3, nome_sub_area_conhecimento1, nome_sub_area_conhecimento2, nome_sub_area_conhecimento3, nome_da_especialidade1, nome_da_especialidade2, nome_da_especialidade3, setor_da_atividade1, setor_da_atividade2, setor_da_atividade3, id_1dados_gerais) 
-                          VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""", 
-                          (nome_do_docente, natureza, tipo, ano, pais, idioma, nome_do_candidato, nome_instituicao, nome_orgao, nome_curso, campo_participantes[0], campo_participantes[1], campo_participantes[2], campo_participantes[3], campo_participantes[4], palavra_chave_1, palavra_chave_2, palavra_chave_3, palavra_chave_3, palavra_chave_5, palavra_chave_6, nome_grande_area_do_conhecimento_1, nome_grande_area_do_conhecimento_2, nome_grande_area_do_conhecimento_3, nome_da_area_do_conhecimento_1, nome_da_area_do_conhecimento_2, nome_da_area_do_conhecimento_3, nome_da_sub_area_do_conhecimento_1, nome_da_sub_area_do_conhecimento_2, nome_da_sub_area_do_conhecimento_3, nome_da_especialidade_1, nome_da_especialidade_2, nome_da_especialidade_3, setor_de_atividade_1, setor_de_atividade_2, setor_de_atividade_3, identificacao))
+            cursor.execute("""INSERT INTO tab_31_participacao_em_eventos_congressos 
+                          (docente, meio_de_divulgacao, natureza, tipo_participacao, forma_participacao, nome_do_evento, local_do_evento, cidade_do_evento, ano, pais, idioma, nome_instituicao, nome_completo_do_participante1, nome_completo_do_participante2, nome_completo_do_participante3, nome_completo_do_participante4, nome_completo_do_participante5, palavra_chave1, palavra_chave2, palavra_chave3, palavra_chave4, palavra_chave5, palavra_chave6, nome_grande_area_do_conhecimento1, nome_grande_area_do_conhecimento2, nome_grande_area_do_conhecimento3, nome_da_area_conhecimento1, nome_da_area_conhecimento2, nome_da_area_conhecimento3, nome_sub_area_conhecimento1, nome_sub_area_conhecimento2, nome_sub_area_conhecimento3, nome_da_especialidade1, nome_da_especialidade2, nome_da_especialidade3, setor_da_atividade1, setor_da_atividade2, setor_da_atividade3, id_1dados_gerais) 
+                          VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""", 
+                          (nome_do_docente, meio_de_divulgacao, natureza, tipo_participacao, forma_participacao, nome_do_evento, local_do_evento, cidade_do_evento, ano, pais, idioma, nome_instituicao, campo_participantes[0], campo_participantes[1], campo_participantes[2], campo_participantes[3], campo_participantes[4], palavra_chave_1, palavra_chave_2, palavra_chave_3, palavra_chave_3, palavra_chave_5, palavra_chave_6, nome_grande_area_do_conhecimento_1, nome_grande_area_do_conhecimento_2, nome_grande_area_do_conhecimento_3, nome_da_area_do_conhecimento_1, nome_da_area_do_conhecimento_2, nome_da_area_do_conhecimento_3, nome_da_sub_area_do_conhecimento_1, nome_da_sub_area_do_conhecimento_2, nome_da_sub_area_do_conhecimento_3, nome_da_especialidade_1, nome_da_especialidade_2, nome_da_especialidade_3, setor_de_atividade_1, setor_de_atividade_2, setor_de_atividade_3, identificacao))
             conexao.conn.commit()
-            print('Participacao em oficina inserida com sucesso!')
+            print('Participacao em evento inserida com sucesso!')
           except Exception as e:
-            print('ERRO: Ao salvar o Participacao em oficina')
+            print('ERRO: Ao salvar o Participacao em evento')
             print(e)
 
   except TypeError as e:
